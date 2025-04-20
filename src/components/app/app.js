@@ -39,6 +39,12 @@ class App extends Component {
       name.toLowerCase().includes(key)
     );
   }
+  deleteEmployee = (id) => {
+    return this.state.data.filter((elem) => elem.id !== id);
+  };
+  onDeleteEmployee = (id) => {
+    this.setState({ data: this.deleteEmployee(id) });
+  };
   onFilterSelect = (filter) => {
     this.setState({ filter });
   };
@@ -61,7 +67,10 @@ class App extends Component {
           <SearchPanel onSearchingKeyChange={this.onSearchingKeyChange} />
           <AppFilter onFilterSelect={this.onFilterSelect} filter={filter} />
         </div>
-        <EmployeesList data={filteredEmpolyees} />
+        <EmployeesList
+          data={filteredEmpolyees}
+          onDeleteEmployee={this.onDeleteEmployee}
+        />
         <EmployeesAddForm />
       </div>
     );
