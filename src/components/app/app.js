@@ -52,6 +52,27 @@ class App extends Component {
   onSearchingKeyChange = (searchingKey) => {
     this.setState({ searchingKey });
   };
+  onToggleIncrease = (id) => {
+    this.setState(({ data }) => ({
+      data: data.map((employee) => {
+        if (employee.id === id) {
+          return { ...employee, increase: !employee.increase };
+        }
+        return employee;
+      }),
+    }));
+  };
+  onToggleRise = (id) => {
+    this.setState(({ data }) => ({
+      data: data.map((employee) => {
+        if (employee.id === id) {
+          return { ...employee, rise: !employee.rise };
+        }
+        return employee;
+      }),
+    }));
+  };
+
   render() {
     const { data, filter } = this.state;
 
@@ -70,6 +91,8 @@ class App extends Component {
         <EmployeesList
           data={filteredEmpolyees}
           onDeleteEmployee={this.onDeleteEmployee}
+          onToggleIncrease={this.onToggleIncrease}
+          onToggleRise={this.onToggleRise}
         />
         <EmployeesAddForm />
       </div>

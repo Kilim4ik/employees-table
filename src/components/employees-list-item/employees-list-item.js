@@ -3,7 +3,15 @@ import { Component } from "react";
 
 class EmployeesListItem extends Component {
   render() {
-    const { name, salary, increase, rise, onDeleteEmployee } = this.props;
+    const {
+      name,
+      salary,
+      increase,
+      rise,
+      onDeleteEmployee,
+      onToggleIncrease,
+      onToggleRise,
+    } = this.props;
 
     let classNames = "list-group-item d-flex justify-content-between";
     if (increase) {
@@ -15,7 +23,7 @@ class EmployeesListItem extends Component {
     }
 
     return (
-      <li className={classNames}>
+      <li onDoubleClick={onToggleRise} className={classNames}>
         <span className="list-group-item-label">{name}</span>
         <input
           type="text"
@@ -23,7 +31,11 @@ class EmployeesListItem extends Component {
           defaultValue={`${salary}`}
         />
         <div className="d-flex justify-content-center align-items-center">
-          <button type="button" className="btn-cookie btn-sm ">
+          <button
+            onClick={onToggleIncrease}
+            type="button"
+            className="btn-cookie btn-sm "
+          >
             <i className="fas fa-cookie"></i>
           </button>
 
